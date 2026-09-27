@@ -1,4 +1,4 @@
-import type { ApiProblem, CreateTicket, Ticket, TicketStatus, TicketSummary, UpdateTicket } from '../types/ticket';
+import type { ApiProblem, Comment, CreateComment, CreateTicket, Ticket, TicketStatus, TicketSummary, UpdateTicket } from '../types/ticket';
 const apiBase = '/api/v1/tickets';
 export class ApiError extends Error { constructor(public readonly problem: ApiProblem) { super(problem.detail); } }
 async function readJson<T>(response: Response): Promise<T> {
@@ -12,6 +12,9 @@ export const ticketsClient = {
   update: (id: number, ticket: UpdateTicket) => fetch(`${apiBase}/${id}`, {
     method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ticket)
   }).then(readJson<Ticket>),
+  addComment: (id: number, comment: CreateComment) => fetch(`${apiBase}/${id}/comments`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(comment)
+  }).then(readJson<Comment>),
   transition: (id: number, status: TicketStatus) => fetch(`${apiBase}/${id}/transitions`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status })
   }).then(readJson<Ticket>)

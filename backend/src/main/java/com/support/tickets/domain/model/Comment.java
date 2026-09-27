@@ -21,6 +21,11 @@ public class Comment {
     @Column(columnDefinition = "TEXT", nullable = false) private String content;
     @Column(nullable = false) private LocalDateTime createdAt;
     protected Comment() { }
+    public Comment(Ticket ticket, String content) {
+        this.ticket = ticket;
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+    }
     public Long getId() { return id; }
     public String getContent() { return content; }
 }

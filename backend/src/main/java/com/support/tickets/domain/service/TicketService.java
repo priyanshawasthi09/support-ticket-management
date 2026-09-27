@@ -19,7 +19,7 @@ public class TicketService {
     }
     @Transactional(readOnly = true)
     public Ticket getById(Long ticketId) {
-        return ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
+        return ticketRepository.findByIdWithComments(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
     }
     @Transactional
     public Ticket updatePartial(Long ticketId, UpdateTicketRequest request) {

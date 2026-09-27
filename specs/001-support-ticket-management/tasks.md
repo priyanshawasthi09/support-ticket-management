@@ -146,15 +146,15 @@ description: "Task list for Support Ticket Management implementation"
 
 ### Tests for User Story 4
 
-- [ ] T046 [P] [US4] Add `backend/src/test/java/com/support/tickets/api/controller/CommentControllerWebMvcTest.java` (`@WebMvcTest`: 422 blank/whitespace `content` with `VALIDATION_ERROR`; 201 valid comment)
-- [ ] T047 [P] [US4] Add `backend/src/test/java/com/support/tickets/integration/CommentPersistenceIntegrationTest.java` (H2)
+- [X] T046 [P] [US4] Add `backend/src/test/java/com/support/tickets/api/controller/CommentControllerWebMvcTest.java` (`@WebMvcTest`: 422 blank/whitespace `content` with `VALIDATION_ERROR`; 201 valid comment)
+- [X] T047 [P] [US4] Add `backend/src/test/java/com/support/tickets/integration/CommentPersistenceIntegrationTest.java` (H2)
 
 ### Implementation for User Story 4
 
-- [ ] T048 [US4] Implement `backend/src/main/java/com/support/tickets/domain/service/CommentService.java`
-- [ ] T049 [US4] Add `POST /api/v1/tickets/{ticketId}/comments` in `backend/src/main/java/com/support/tickets/api/controller/CommentController.java` with `@Valid` on `backend/src/main/java/com/support/tickets/api/dto/CreateCommentRequest.java` (`@NotBlank` content; no `@Size` maximums)
-- [ ] T050 [US4] Include comments in `GET /api/v1/tickets/{id}` via `TicketMapper` (order by comment `id` ASC)
-- [ ] T051 [US4] Add comment list + form to `frontend/src/pages/TicketDetailPage.tsx`
+- [X] T048 [US4] Implement `backend/src/main/java/com/support/tickets/domain/service/CommentService.java`
+- [X] T049 [US4] Add `POST /api/v1/tickets/{ticketId}/comments` in `backend/src/main/java/com/support/tickets/api/controller/CommentController.java` with `@Valid` on `backend/src/main/java/com/support/tickets/api/dto/CreateCommentRequest.java` (`@NotBlank` content; no `@Size` maximums)
+- [X] T050 [US4] Include comments in `GET /api/v1/tickets/{id}` via `TicketMapper` (order by comment `id` ASC)
+- [X] T051 [US4] Add comment list + form to `frontend/src/pages/TicketDetailPage.tsx`
 
 **Checkpoint**: US4 complete; detail shows comments after refresh
 

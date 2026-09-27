@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Ticket {
     @Column(nullable = false) private LocalDateTime createdAt;
     @Column(nullable = false) private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OrderBy("id ASC")
     private List<Comment> comments = new ArrayList<>();
 
     protected Ticket() { }
@@ -58,4 +60,5 @@ public class Ticket {
     public void updateDescription(String description) { this.description = description; updatedAt = LocalDateTime.now(); }
     public void updatePriority(TicketPriority priority) { this.priority = priority; updatedAt = LocalDateTime.now(); }
     public void updateAssignee(String assignee) { this.assignee = assignee; updatedAt = LocalDateTime.now(); }
+    public void addComment(Comment comment) { comments.add(comment); }
 }

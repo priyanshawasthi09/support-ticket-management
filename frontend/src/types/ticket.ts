@@ -3,6 +3,7 @@ export type TicketStatus = 'OPEN' | 'IN_PROGRESS' | 'RESOLVED' | 'CLOSED' | 'CAN
 export interface TicketSummary { id: number; title: string; status: TicketStatus; }
 export interface Ticket { id: number; title: string; description: string; priority: TicketPriority; assignee: string | null; status: TicketStatus; comments: Comment[]; }
 export interface Comment { id: number; content: string; }
+export interface CreateComment { content: string; }
 export interface CreateTicket { title: string; description: string; priority: TicketPriority; assignee?: string; }
 export interface UpdateTicket { title?: string; description?: string; priority?: TicketPriority; assignee?: string | null; }
 export interface ApiProblem {

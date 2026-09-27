@@ -43,7 +43,17 @@ export function TicketDetailPage() {
     }).then(updated => { setTicket(updated); setClearAssignee(false); })
       .catch(cause => setError(cause instanceof Error ? cause.message : 'Unable to update ticket'));
   };
+  const addComment = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!ticket) return;
+    const form = new FormData(event.currentTarget);
+    setError('');
+    ticketsClient.addComment(ticket.id, { content: String(form.get('content')) }).then(comment => {
+      setTicket({ ...ticket, comments: [...ticket.comments, comment] });
+      event.currentTarget.reset();
+    }).catch(cause => setError(cause instanceof Error ? cause.message : 'Unable to add comment'));
+  };
   if (error && !ticket) return <main><p role="alert">{error}</p></main>;
   if (!ticket) return <main><p>Loading…</p></main>;
-  return <main><Link to="/">Tickets</Link><h1>#{ticket.id} {ticket.title}</h1><dl><dt>Status</dt><dd>{ticket.status}</dd><dt>Priority</dt><dd>{ticket.priority}</dd><dt>Assignee</dt><dd>{ticket.assignee || 'Unassigned'}</dd><dt>Description</dt><dd>{ticket.description}</dd></dl><h2>Edit ticket</h2><form onSubmit={update}><label>Title <input name="title" defaultValue={ticket.title} required /></label><label>Description <textarea name="description" defaultValue={ticket.description} required /></label><label>Priority <select name="priority" defaultValue={ticket.priority}><option>LOW</option><option>MEDIUM</option><option>HIGH</option></select></label><label>Assignee <input name="assignee" defaultValue={ticket.assignee ?? ''} disabled={clearAssignee} /></label><label><input type="checkbox" checked={clearAssignee} onChange={event => setClearAssignee(event.target.checked)} /> Clear assignee</label><button type="submit">Save changes</button></form><h2>Change status</h2>{allowedTargets[ticket.status].map(status => <button key={status} type="button" onClick={() => transition(status)}>{status}</button>)}{error && <p role="alert">{error}</p>}<h2>Comments</h2><ul>{ticket.comments.map(comment => <li key={comment.id}>{comment.content}</li>)}</ul></main>;
+  return <main><Link to="/">Tickets</Link><h1>#{ticket.id} {ticket.title}</h1><dl><dt>Status</dt><dd>{ticket.status}</dd><dt>Priority</dt><dd>{ticket.priority}</dd><dt>Assignee</dt><dd>{ticket.assignee || 'Unassigned'}</dd><dt>Description</dt><dd>{ticket.description}</dd></dl><h2>Edit ticket</h2><form onSubmit={update}><label>Title <input name="title" defaultValue={ticket.title} required /></label><label>Description <textarea name="description" defaultValue={ticket.description} required /></label><label>Priority <select name="priority" defaultValue={ticket.priority}><option>LOW</option><option>MEDIUM</option><option>HIGH</option></select></label><label>Assignee <input name="assignee" defaultValue={ticket.assignee ?? ''} disabled={clearAssignee} /></label><label><input type="checkbox" checked={clearAssignee} onChange={event => setClearAssignee(event.target.checked)} /> Clear assignee</label><button type="submit">Save changes</button></form><h2>Change status</h2>{allowedTargets[ticket.status].map(status => <button key={status} type="button" onClick={() => transition(status)}>{status}</button>)}{error && <p role="alert">{error}</p>}<h2>Comments</h2><ul>{ticket.comments.map(comment => <li key={comment.id}>{comment.content}</li>)}</ul><form onSubmit={addComment}><label>Comment <textarea name="content" required /></label><button type="submit">Add comment</button></form></main>;
 }
