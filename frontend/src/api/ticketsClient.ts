@@ -7,7 +7,13 @@ async function readJson<T>(response: Response): Promise<T> {
 }
 export const ticketsClient = {
   create: (ticket: CreateTicket) => fetch(apiBase, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ticket) }).then(readJson<Ticket>),
-  list: () => fetch(apiBase).then(readJson<TicketSummary[]>),
+  list: (params?: { q?: string; status?: TicketStatus }) => {
+    const searchParams = new URLSearchParams();
+    if (params?.q) searchParams.set('q', params.q);
+    if (params?.status) searchParams.set('status', params.status);
+    const query = searchParams.toString();
+    return fetch(query ? `${apiBase}?${query}` : apiBase).then(readJson<TicketSummary[]>);
+  },
   getById: (id: number) => fetch(`${apiBase}/${id}`).then(readJson<Ticket>),
   update: (id: number, ticket: UpdateTicket) => fetch(`${apiBase}/${id}`, {
     method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ticket)

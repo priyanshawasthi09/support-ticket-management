@@ -6,6 +6,7 @@ import com.support.tickets.api.dto.TicketSummaryResponse;
 import com.support.tickets.api.dto.TransitionRequest;
 import com.support.tickets.api.dto.UpdateTicketRequest;
 import com.support.tickets.api.mapper.TicketMapper;
+import com.support.tickets.domain.model.TicketStatus;
 import com.support.tickets.domain.service.TicketService;
 import com.support.tickets.domain.service.TicketStatusService;
 import jakarta.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -38,8 +40,13 @@ public class TicketController {
         return ResponseEntity.created(URI.create("/api/v1/tickets/" + response.id())).body(response);
     }
     @GetMapping
-    public List<TicketSummaryResponse> list() {
-        return ticketService.listSummaries().stream().map(ticketMapper::toSummary).toList();
+    public List<TicketSummaryResponse> list(
+            @RequestParam(required = false) TicketStatus status,
+            @RequestParam(required = false) String q) {
+        var tickets = status == null && q == null
+                ? ticketService.listSummaries()
+                : ticketService.listSummaries(status, q);
+        return tickets.stream().map(ticketMapper::toSummary).toList();
     }
     @GetMapping("/{ticketId}")
     public TicketResponse getById(@PathVariable Long ticketId) { return ticketMapper.toResponse(ticketService.getById(ticketId)); }

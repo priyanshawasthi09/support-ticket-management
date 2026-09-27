@@ -170,14 +170,14 @@ description: "Task list for Support Ticket Management implementation"
 
 ### Tests for User Story 5
 
-- [ ] T052 [P] [US5] Add `backend/src/test/java/com/support/tickets/domain/repository/TicketRepositorySearchTest.java` (`@DataJpaTest`, H2)
-- [ ] T053 [P] [US5] Add `backend/src/test/java/com/support/tickets/api/controller/TicketListFilterWebMvcTest.java`
+- [X] T052 [P] [US5] Add `backend/src/test/java/com/support/tickets/domain/repository/TicketRepositorySearchTest.java` (`@DataJpaTest`, H2)
+- [X] T053 [P] [US5] Add `backend/src/test/java/com/support/tickets/api/controller/TicketListFilterWebMvcTest.java`
 
 ### Implementation for User Story 5
 
-- [ ] T054 [US5] Add search/filter query to `TicketRepository` in `backend/src/main/java/com/support/tickets/domain/repository/TicketRepository.java`
-- [ ] T055 [US5] Extend `TicketService.listSummaries` and `GET /api/v1/tickets` for `status` and `q` params
-- [ ] T056 [US5] Add search input and status filter to `frontend/src/pages/TicketListPage.tsx`
+- [X] T054 [US5] Add search/filter query to `TicketRepository` in `backend/src/main/java/com/support/tickets/domain/repository/TicketRepository.java`
+- [X] T055 [US5] Extend `TicketService.listSummaries` and `GET /api/v1/tickets` for `status` and `q` params
+- [X] T056 [US5] Add search input and status filter to `frontend/src/pages/TicketListPage.tsx`
 
 **Checkpoint**: Combined filter + search matches spec FR-007/FR-008
 

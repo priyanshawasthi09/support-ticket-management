@@ -3,6 +3,7 @@ package com.support.tickets.domain.service;
 import com.support.tickets.api.dto.UpdateTicketRequest;
 import com.support.tickets.domain.model.Ticket;
 import com.support.tickets.domain.model.TicketPriority;
+import com.support.tickets.domain.model.TicketStatus;
 import com.support.tickets.domain.repository.TicketRepository;
 import com.support.tickets.exception.TicketNotFoundException;
 import java.util.List;
@@ -30,6 +31,12 @@ public class TicketService {
         if (request.isAssigneePresent()) ticket.updateAssignee(request.getAssignee());
         return ticket;
     }
+    @Transactional(readOnly = true)
+    public List<Ticket> listSummaries(TicketStatus status, String keyword) {
+        String normalizedKeyword = keyword == null || keyword.isBlank() ? null : keyword;
+        return ticketRepository.search(status, normalizedKeyword);
+    }
+
     @Transactional(readOnly = true)
     public List<Ticket> listSummaries() { return ticketRepository.findAllByOrderByIdDesc(); }
 }
