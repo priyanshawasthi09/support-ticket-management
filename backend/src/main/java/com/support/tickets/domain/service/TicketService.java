@@ -1,5 +1,6 @@
 package com.support.tickets.domain.service;
 
+import com.support.tickets.api.dto.UpdateTicketRequest;
 import com.support.tickets.domain.model.Ticket;
 import com.support.tickets.domain.model.TicketPriority;
 import com.support.tickets.domain.repository.TicketRepository;
@@ -19,6 +20,15 @@ public class TicketService {
     @Transactional(readOnly = true)
     public Ticket getById(Long ticketId) {
         return ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
+    }
+    @Transactional
+    public Ticket updatePartial(Long ticketId, UpdateTicketRequest request) {
+        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
+        if (request.isTitlePresent()) ticket.updateTitle(request.getTitle());
+        if (request.isDescriptionPresent()) ticket.updateDescription(request.getDescription());
+        if (request.isPriorityPresent()) ticket.updatePriority(request.getPriority());
+        if (request.isAssigneePresent()) ticket.updateAssignee(request.getAssignee());
+        return ticket;
     }
     @Transactional(readOnly = true)
     public List<Ticket> listSummaries() { return ticketRepository.findAllByOrderByIdDesc(); }

@@ -4,6 +4,7 @@ import com.support.tickets.api.dto.CreateTicketRequest;
 import com.support.tickets.api.dto.TicketResponse;
 import com.support.tickets.api.dto.TicketSummaryResponse;
 import com.support.tickets.api.dto.TransitionRequest;
+import com.support.tickets.api.dto.UpdateTicketRequest;
 import com.support.tickets.api.mapper.TicketMapper;
 import com.support.tickets.domain.service.TicketService;
 import com.support.tickets.domain.service.TicketStatusService;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +43,10 @@ public class TicketController {
     }
     @GetMapping("/{ticketId}")
     public TicketResponse getById(@PathVariable Long ticketId) { return ticketMapper.toResponse(ticketService.getById(ticketId)); }
+    @PatchMapping("/{ticketId}")
+    public TicketResponse updatePartial(@PathVariable Long ticketId, @Valid @RequestBody UpdateTicketRequest request) {
+        return ticketMapper.toResponse(ticketService.updatePartial(ticketId, request));
+    }
     @PostMapping("/{ticketId}/transitions")
     public TicketResponse transition(@PathVariable Long ticketId, @Valid @RequestBody TransitionRequest request) {
         return ticketMapper.toResponse(ticketStatusService.transition(ticketId, request.status()));

@@ -53,4 +53,9 @@ public class Ticket {
         status = requestedStatus;
         updatedAt = LocalDateTime.now();
     }
+
+    public void updateTitle(String title) { this.title = title; updatedAt = LocalDateTime.now(); }
+    public void updateDescription(String description) { this.description = description; updatedAt = LocalDateTime.now(); }
+    public void updatePriority(TicketPriority priority) { this.priority = priority; updatedAt = LocalDateTime.now(); }
+    public void updateAssignee(String assignee) { this.assignee = assignee; updatedAt = LocalDateTime.now(); }
 }

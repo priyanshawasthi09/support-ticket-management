@@ -124,15 +124,15 @@ description: "Task list for Support Ticket Management implementation"
 
 ### Tests for User Story 3
 
-- [ ] T040 [P] [US3] Add `backend/src/test/java/com/support/tickets/domain/service/TicketServicePatchTest.java` (unit: partial field update, omitted fields unchanged, explicit `assignee` null clears assignee, ticket `status` unchanged — no blank-field assertion tests here)
-- [ ] T041 [P] [US3] Add `backend/src/test/java/com/support/tickets/api/controller/TicketPatchWebMvcTest.java` (`@WebMvcTest`: 422 when supplied title/description blank or priority invalid; 200 valid partial PATCH)
+- [X] T040 [P] [US3] Add `backend/src/test/java/com/support/tickets/domain/service/TicketServicePatchTest.java` (unit: partial field update, omitted fields unchanged, explicit `assignee` null clears assignee, ticket `status` unchanged — no blank-field assertion tests here)
+- [X] T041 [P] [US3] Add `backend/src/test/java/com/support/tickets/api/controller/TicketPatchWebMvcTest.java` (`@WebMvcTest`: 422 when supplied title/description blank or priority invalid; 200 valid partial PATCH)
 
 ### Implementation for User Story 3
 
-- [ ] T042 [US3] Add presence-aware `UpdateTicketRequest` in `backend/src/main/java/com/support/tickets/api/dto/UpdateTicketRequest.java` using `JsonNullable` or an equivalent Jackson presence-aware mechanism (omitted fields unchanged; explicit `assignee: null` clears assignee); validate any supplied title/description as `@NotBlank` and any supplied `priority` as a valid enum (no `@Size` maximums)
-- [ ] T043 [US3] Extend `TicketService` with `updatePartial` in `backend/src/main/java/com/support/tickets/domain/service/TicketService.java`
-- [ ] T044 [US3] Add `PATCH /api/v1/tickets/{id}` to `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` with `@Valid` on `UpdateTicketRequest`
-- [ ] T045 [US3] Add edit form on `frontend/src/pages/TicketDetailPage.tsx` calling PATCH (including clear assignee)
+- [X] T042 [US3] Add presence-aware `UpdateTicketRequest` in `backend/src/main/java/com/support/tickets/api/dto/UpdateTicketRequest.java` using `JsonNullable` or an equivalent Jackson presence-aware mechanism (omitted fields unchanged; explicit `assignee: null` clears assignee); validate any supplied title/description as `@NotBlank` and any supplied `priority` as a valid enum (no `@Size` maximums)
+- [X] T043 [US3] Extend `TicketService` with `updatePartial` in `backend/src/main/java/com/support/tickets/domain/service/TicketService.java`
+- [X] T044 [US3] Add `PATCH /api/v1/tickets/{id}` to `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` with `@Valid` on `UpdateTicketRequest`
+- [X] T045 [US3] Add edit form on `frontend/src/pages/TicketDetailPage.tsx` calling PATCH (including clear assignee)
 
 **Checkpoint**: Edits work on CLOSED/CANCELLED tickets without status change
 
