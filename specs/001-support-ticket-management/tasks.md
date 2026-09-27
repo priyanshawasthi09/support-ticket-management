@@ -29,14 +29,14 @@ description: "Task list for Support Ticket Management implementation"
 
 **Purpose**: Repository layout, build tools, local PostgreSQL option
 
-- [ ] T001 Create `backend/pom.xml` with Java 21, Spring Boot 3 (web, data-jpa, validation), Flyway, PostgreSQL driver, H2, springdoc-openapi, Testcontainers PostgreSQL, JUnit 5, Mockito, AssertJ
-- [ ] T002 Create `backend/src/main/java/com/support/tickets/SupportTicketApplication.java`
-- [ ] T003 [P] Scaffold `frontend/` with Vite, React 18, TypeScript, and React Router (`frontend/package.json`, `frontend/vite.config.ts`, `frontend/index.html`)
-- [ ] T004 [P] Add `docker-compose.yml` at repository root for PostgreSQL 15 (dev only; no secrets in repo)
-- [ ] T005 [P] Add `backend/src/main/resources/application.yml` with shared defaults (`ddl-auto=validate`, Flyway enabled)
-- [ ] T006 [P] Add `README.md` skeleton at repository root (placeholders for run/test instructions)
+- [X] T001 Create Gradle configuration (`backend/settings.gradle`, `backend/build.gradle`) with Java 21, Spring Boot 3 (web, data-jpa, validation), Flyway, PostgreSQL driver, H2, springdoc-openapi, Testcontainers PostgreSQL, JUnit 5, Mockito, AssertJ
+- [X] T002 Create `backend/src/main/java/com/support/tickets/SupportTicketApplication.java`
+- [X] T003 [P] Scaffold `frontend/` with Vite, React 18, TypeScript, and React Router (`frontend/package.json`, `frontend/vite.config.ts`, `frontend/index.html`)
+- [X] T004 [P] Add `docker-compose.yml` at repository root for PostgreSQL 15 (dev only; no secrets in repo)
+- [X] T005 [P] Add `backend/src/main/resources/application.yml` with shared defaults (`ddl-auto=validate`, Flyway enabled)
+- [X] T006 [P] Add `README.md` skeleton at repository root (placeholders for run/test instructions)
 
-**Checkpoint**: `./mvnw -f backend/pom.xml -q validate` and `npm install` in `frontend/` succeed
+**Checkpoint**: `gradle -p backend validate` and `npm install` in `frontend/` succeed
 
 ---
 
@@ -46,21 +46,21 @@ description: "Task list for Support Ticket Management implementation"
 
 **⚠️ CRITICAL**: No user story implementation until this phase completes
 
-- [ ] T007 Add Flyway migration `backend/src/main/resources/db/migration/V1__create_tickets_and_comments.sql` with `TEXT` columns (no max-length DB constraints per [research.md](./research.md) R9)
-- [ ] T008 Add `backend/src/main/resources/application-local.yml` (PostgreSQL via env vars, CORS for `http://localhost:5173`)
-- [ ] T009 Add `backend/src/main/resources/application-test.yml` (H2 in-memory, Flyway on)
-- [ ] T010 [P] Create enums `backend/src/main/java/com/support/tickets/domain/model/TicketStatus.java` and `TicketPriority.java`
-- [ ] T011 [P] Create JPA entity `backend/src/main/java/com/support/tickets/domain/model/Ticket.java` (LAZY comments, IDENTITY id)
-- [ ] T012 [P] Create JPA entity `backend/src/main/java/com/support/tickets/domain/model/Comment.java`
-- [ ] T013 [P] Create `backend/src/main/java/com/support/tickets/domain/repository/TicketRepository.java`
-- [ ] T014 [P] Create `backend/src/main/java/com/support/tickets/domain/repository/CommentRepository.java`
-- [ ] T015 [P] Create stable error codes enum `backend/src/main/java/com/support/tickets/exception/ApiErrorCode.java` (`TICKET_NOT_FOUND`, `VALIDATION_ERROR`, `INVALID_STATUS_TRANSITION`)
-- [ ] T016 Implement `backend/src/main/java/com/support/tickets/exception/GlobalExceptionHandler.java` returning RFC 7807 `ProblemDetail` with `code`, human message, and transition fields when applicable
-- [ ] T017 [P] Create API DTO records under `backend/src/main/java/com/support/tickets/api/dto/` (`TicketSummaryResponse`, `TicketResponse`, `CommentResponse`, `CreateTicketRequest`, `UpdateTicketRequest`, `CreateCommentRequest`, `TransitionRequest`)
-- [ ] T018 [P] Create `backend/src/main/java/com/support/tickets/api/mapper/TicketMapper.java`
-- [ ] T019 [P] Add `backend/src/main/java/com/support/tickets/config/WebConfig.java` for CORS (local profile)
-- [ ] T020 [P] Add `backend/src/main/java/com/support/tickets/config/OpenApiConfig.java` for springdoc
-- [ ] T021 Add `backend/src/test/java/com/support/tickets/support/AbstractIntegrationTest.java` with `@SpringBootTest` and H2 `test` profile
+- [X] T007 Add Flyway migration `backend/src/main/resources/db/migration/V1__create_tickets_and_comments.sql` with `TEXT` columns (no max-length DB constraints per [research.md](./research.md) R9)
+- [X] T008 Add `backend/src/main/resources/application-local.yml` (PostgreSQL via env vars, CORS for `http://localhost:5173`)
+- [X] T009 Add `backend/src/main/resources/application-test.yml` (H2 in-memory, Flyway on)
+- [X] T010 [P] Create enums `backend/src/main/java/com/support/tickets/domain/model/TicketStatus.java` and `TicketPriority.java`
+- [X] T011 [P] Create JPA entity `backend/src/main/java/com/support/tickets/domain/model/Ticket.java` (LAZY comments, IDENTITY id)
+- [X] T012 [P] Create JPA entity `backend/src/main/java/com/support/tickets/domain/model/Comment.java`
+- [X] T013 [P] Create `backend/src/main/java/com/support/tickets/domain/repository/TicketRepository.java`
+- [X] T014 [P] Create `backend/src/main/java/com/support/tickets/domain/repository/CommentRepository.java`
+- [X] T015 [P] Create stable error codes enum `backend/src/main/java/com/support/tickets/exception/ApiErrorCode.java` (`TICKET_NOT_FOUND`, `VALIDATION_ERROR`, `INVALID_STATUS_TRANSITION`)
+- [X] T016 Implement `backend/src/main/java/com/support/tickets/exception/GlobalExceptionHandler.java` returning RFC 7807 `ProblemDetail` with `code`, human message, and transition fields when applicable
+- [X] T017 [P] Create API DTO records under `backend/src/main/java/com/support/tickets/api/dto/` (`TicketSummaryResponse`, `TicketResponse`, `CommentResponse`, `CreateTicketRequest`, `UpdateTicketRequest`, `CreateCommentRequest`, `TransitionRequest`)
+- [X] T018 [P] Create `backend/src/main/java/com/support/tickets/api/mapper/TicketMapper.java`
+- [X] T019 [P] Add `backend/src/main/java/com/support/tickets/config/WebConfig.java` for CORS (local profile)
+- [X] T020 [P] Add `backend/src/main/java/com/support/tickets/config/OpenApiConfig.java` for springdoc
+- [X] T021 Add `backend/src/test/java/com/support/tickets/support/AbstractIntegrationTest.java` with `@SpringBootTest` and H2 `test` profile
 
 **Checkpoint**: Application starts on H2 test profile; migrations apply; no REST features yet
 
@@ -74,21 +74,21 @@ description: "Task list for Support Ticket Management implementation"
 
 ### Tests for User Story 1
 
-- [ ] T022 [P] [US1] Add `backend/src/test/java/com/support/tickets/domain/service/TicketServiceCreateTest.java` (unit: new ticket starts OPEN, optional assignee on create stored or omitted — no blank-field assertion tests here)
-- [ ] T023 [P] [US1] Add `backend/src/test/java/com/support/tickets/api/controller/TicketControllerCreateListWebMvcTest.java` (`@WebMvcTest`: 201 create, 422 blank title/description/invalid priority with `VALIDATION_ERROR`, list summaries include `id`)
-- [ ] T024 [P] [US1] Add `backend/src/test/java/com/support/tickets/integration/TicketCreateListIntegrationTest.java` (H2: create two same-title tickets, distinct ids)
+- [X] T022 [P] [US1] Add `backend/src/test/java/com/support/tickets/domain/service/TicketServiceCreateTest.java` (unit: new ticket starts OPEN, optional assignee on create stored or omitted — no blank-field assertion tests here)
+- [X] T023 [P] [US1] Add `backend/src/test/java/com/support/tickets/api/controller/TicketControllerCreateListWebMvcTest.java` (`@WebMvcTest`: 201 create, 422 blank title/description/invalid priority with `VALIDATION_ERROR`, list summaries include `id`)
+- [X] T024 [P] [US1] Add `backend/src/test/java/com/support/tickets/integration/TicketCreateListIntegrationTest.java` (H2: create two same-title tickets, distinct ids)
 
 ### Implementation for User Story 1
 
-- [ ] T025 [US1] Implement `backend/src/main/java/com/support/tickets/domain/service/TicketService.java` methods `create`, `getById`, `listSummaries` (default sort `id` DESC per research R8)
-- [ ] T026 [US1] Implement `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` — `POST /api/v1/tickets`, `GET /api/v1/tickets`, `GET /api/v1/tickets/{id}` (comments empty array until US4)
-- [ ] T027 [P] [US1] Add Jakarta validation on `backend/src/main/java/com/support/tickets/api/dto/CreateTicketRequest.java` — `@NotBlank` title and description, valid `priority` enum, optional `assignee` (no `@Size` maximums); trigger via `@Valid` on `POST /api/v1/tickets` in `TicketController.java`
-- [ ] T028 [P] [US1] Add `frontend/src/types/ticket.ts` mirroring API types
-- [ ] T029 [P] [US1] Add `frontend/src/api/ticketsClient.ts` (create, list, getById, parse ProblemDetail)
-- [ ] T030 [US1] Add `frontend/src/pages/TicketListPage.tsx` showing `id`, title, status
-- [ ] T031 [US1] Add `frontend/src/pages/CreateTicketPage.tsx` with client-side required-field hints (backend authoritative)
-- [ ] T032 [US1] Add `frontend/src/pages/TicketDetailPage.tsx` read-only detail view
-- [ ] T033 [US1] Wire routes in `frontend/src/App.tsx`
+- [X] T025 [US1] Implement `backend/src/main/java/com/support/tickets/domain/service/TicketService.java` methods `create`, `getById`, `listSummaries` (default sort `id` DESC per research R8)
+- [X] T026 [US1] Implement `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` — `POST /api/v1/tickets`, `GET /api/v1/tickets`, `GET /api/v1/tickets/{id}` (comments empty array until US4)
+- [X] T027 [P] [US1] Add Jakarta validation on `backend/src/main/java/com/support/tickets/api/dto/CreateTicketRequest.java` — `@NotBlank` title and description, valid `priority` enum, optional `assignee` (no `@Size` maximums); trigger via `@Valid` on `POST /api/v1/tickets` in `TicketController.java`
+- [X] T028 [P] [US1] Add `frontend/src/types/ticket.ts` mirroring API types
+- [X] T029 [P] [US1] Add `frontend/src/api/ticketsClient.ts` (create, list, getById, parse ProblemDetail)
+- [X] T030 [US1] Add `frontend/src/pages/TicketListPage.tsx` showing `id`, title, status
+- [X] T031 [US1] Add `frontend/src/pages/CreateTicketPage.tsx` with client-side required-field hints (backend authoritative)
+- [X] T032 [US1] Add `frontend/src/pages/TicketDetailPage.tsx` read-only detail view
+- [X] T033 [US1] Wire routes in `frontend/src/App.tsx`
 
 **Checkpoint**: MVP API + UI for create/list/detail; run US1 independent test
 

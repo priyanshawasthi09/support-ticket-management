@@ -1,1 +1,11 @@
 .idea/
+target/
+*.class
+*.jar
+build/
+node_modules/
+dist/
+*.log
+.env*
+.DS_Store
+tsconfig.tsbuildinfo

@@ -3,8 +3,7 @@
   "integration_state_schema": 1,
   "installed_integrations": [
     "cursor-agent",
-    "codex",
-    "copilot"
+    "codex"
   ],
   "integration_settings": {
     "cursor-agent": {
@@ -14,12 +13,8 @@
     "codex": {
       "script": "sh",
       "invoke_separator": "-"
-    },
-    "copilot": {
-      "script": "sh",
-      "invoke_separator": "-"
     }
   },
-  "integration": "cursor-agent",
-  "default_integration": "cursor-agent"
+  "integration": "codex",
+  "default_integration": "codex"
 }
