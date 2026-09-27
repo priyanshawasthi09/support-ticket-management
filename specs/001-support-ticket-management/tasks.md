@@ -102,15 +102,15 @@ description: "Task list for Support Ticket Management implementation"
 
 ### Tests for User Story 2
 
-- [ ] T034 [P] [US2] Add `backend/src/test/java/com/support/tickets/domain/service/TicketStatusTransitionsTest.java` (unit: full transition matrix, same-status rejected)
-- [ ] T035 [P] [US2] Add `backend/src/test/java/com/support/tickets/api/controller/TicketTransitionWebMvcTest.java` (`@WebMvcTest`: 422 invalid `status` enum on `TransitionRequest`; 409 `INVALID_STATUS_TRANSITION` with `currentStatus`/`requestedStatus` for disallowed business transitions)
+- [X] T034 [P] [US2] Add `backend/src/test/java/com/support/tickets/domain/service/TicketStatusTransitionsTest.java` (unit: full transition matrix, same-status rejected)
+- [X] T035 [P] [US2] Add `backend/src/test/java/com/support/tickets/api/controller/TicketTransitionWebMvcTest.java` (`@WebMvcTest`: 422 invalid `status` enum on `TransitionRequest`; 409 `INVALID_STATUS_TRANSITION` with `currentStatus`/`requestedStatus` for disallowed business transitions)
 
 ### Implementation for User Story 2
 
-- [ ] T036 [US2] Implement `backend/src/main/java/com/support/tickets/domain/service/TicketStatusService.java` and `TicketStatusTransitions` helper (FR-009/FR-010)
-- [ ] T037 [US2] Add `POST /api/v1/tickets/{id}/transitions` to `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` with `@Valid` on `backend/src/main/java/com/support/tickets/api/dto/TransitionRequest.java` (required valid `TicketStatus` enum)
-- [ ] T038 [US2] Add transition actions to `frontend/src/pages/TicketDetailPage.tsx` (show only allowed targets; still call API for authority)
-- [ ] T039 [US2] Display transition errors using `code`, `detail`, `currentStatus`, `requestedStatus` in `frontend/src/api/ticketsClient.ts`
+- [X] T036 [US2] Implement `backend/src/main/java/com/support/tickets/domain/service/TicketStatusService.java` and `TicketStatusTransitions` helper (FR-009/FR-010)
+- [X] T037 [US2] Add `POST /api/v1/tickets/{id}/transitions` to `backend/src/main/java/com/support/tickets/api/controller/TicketController.java` with `@Valid` on `backend/src/main/java/com/support/tickets/api/dto/TransitionRequest.java` (required valid `TicketStatus` enum)
+- [X] T038 [US2] Add transition actions to `frontend/src/pages/TicketDetailPage.tsx` (show only allowed targets; still call API for authority)
+- [X] T039 [US2] Display transition errors using `code`, `detail`, `currentStatus`, `requestedStatus` in `frontend/src/api/ticketsClient.ts`
 
 **Checkpoint**: Lifecycle enforced server-side; US1 + US2 both pass tests
 
