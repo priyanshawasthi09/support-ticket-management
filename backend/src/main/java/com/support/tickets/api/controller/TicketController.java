@@ -3,8 +3,10 @@ package com.support.tickets.api.controller;
 import com.support.tickets.api.dto.CreateTicketRequest;
 import com.support.tickets.api.dto.TicketResponse;
 import com.support.tickets.api.dto.TicketSummaryResponse;
+import com.support.tickets.api.dto.TransitionRequest;
 import com.support.tickets.api.mapper.TicketMapper;
 import com.support.tickets.domain.service.TicketService;
+import com.support.tickets.domain.service.TicketStatusService;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -20,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/tickets")
 public class TicketController {
     private final TicketService ticketService;
+    private final TicketStatusService ticketStatusService;
     private final TicketMapper ticketMapper;
-    public TicketController(TicketService ticketService, TicketMapper ticketMapper) {
+    public TicketController(TicketService ticketService, TicketStatusService ticketStatusService, TicketMapper ticketMapper) {
         this.ticketService = ticketService;
+        this.ticketStatusService = ticketStatusService;
         this.ticketMapper = ticketMapper;
     }
     @PostMapping
@@ -37,4 +41,8 @@ public class TicketController {
     }
     @GetMapping("/{ticketId}")
     public TicketResponse getById(@PathVariable Long ticketId) { return ticketMapper.toResponse(ticketService.getById(ticketId)); }
+    @PostMapping("/{ticketId}/transitions")
+    public TicketResponse transition(@PathVariable Long ticketId, @Valid @RequestBody TransitionRequest request) {
+        return ticketMapper.toResponse(ticketStatusService.transition(ticketId, request.status()));
+    }
 }

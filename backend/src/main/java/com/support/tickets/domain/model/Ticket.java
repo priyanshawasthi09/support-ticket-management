@@ -48,4 +48,9 @@ public class Ticket {
     public String getAssignee() { return assignee; }
     public TicketStatus getStatus() { return status; }
     public List<Comment> getComments() { return comments; }
+
+    public void transitionTo(TicketStatus requestedStatus) {
+        status = requestedStatus;
+        updatedAt = LocalDateTime.now();
+    }
 }

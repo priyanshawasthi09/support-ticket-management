@@ -16,6 +16,14 @@ public class GlobalExceptionHandler {
     ProblemDetail handleNotFound(TicketNotFoundException exception) {
         return problem(HttpStatus.NOT_FOUND, "Not Found", exception.getMessage(), ApiErrorCode.TICKET_NOT_FOUND);
     }
+    @ExceptionHandler(InvalidStatusTransitionException.class)
+    ProblemDetail handleInvalidTransition(InvalidStatusTransitionException exception) {
+        ProblemDetail problem = problem(HttpStatus.CONFLICT, "Conflict", exception.getMessage(),
+                ApiErrorCode.INVALID_STATUS_TRANSITION);
+        problem.setProperty("currentStatus", exception.getCurrentStatus());
+        problem.setProperty("requestedStatus", exception.getRequestedStatus());
+        return problem;
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ProblemDetail handleValidation(MethodArgumentNotValidException exception) {
         ProblemDetail problem = problem(HttpStatus.UNPROCESSABLE_ENTITY, "Validation Failed",

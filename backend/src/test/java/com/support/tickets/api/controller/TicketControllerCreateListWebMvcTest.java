@@ -13,6 +13,7 @@ import com.support.tickets.api.mapper.TicketMapper;
 import com.support.tickets.domain.model.TicketPriority;
 import com.support.tickets.domain.model.TicketStatus;
 import com.support.tickets.domain.service.TicketService;
+import com.support.tickets.domain.service.TicketStatusService;
 import com.support.tickets.exception.GlobalExceptionHandler;
 import com.support.tickets.exception.TicketNotFoundException;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 class TicketControllerCreateListWebMvcTest {
     @Autowired MockMvc mockMvc;
     @MockBean TicketService ticketService;
+    @MockBean TicketStatusService ticketStatusService;
     @MockBean TicketMapper ticketMapper;
     @Test void createsTicket() throws Exception {
         when(ticketService.create(any(), any(), any(), any())).thenReturn(null);
