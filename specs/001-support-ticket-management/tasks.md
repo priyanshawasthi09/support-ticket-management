@@ -187,7 +187,7 @@ description: "Task list for Support Ticket Management implementation"
 
 **Purpose**: PostgreSQL persistence gate, documentation, contract alignment
 
-- [ ] T057 Add **required** `backend/src/test/java/com/support/tickets/integration/PostgreSqlRestartPersistenceIT.java` (mandatory CI gate, FR-013 / SC-002): keep the Testcontainers PostgreSQL database/container running; persist a ticket and comment via the API or services; terminate/close the Spring `ApplicationContext`; start a **fresh** `ApplicationContext` against the **same** database; verify the same ticket `id`, title, description, priority, assignee, `status`, and persisted comments ([plan.md](./plan.md))
+- [X] T057 Add **required** `backend/src/test/java/com/support/tickets/integration/PostgreSqlRestartPersistenceIT.java` (mandatory CI gate, FR-013 / SC-002): keep the Testcontainers PostgreSQL database/container running; persist a ticket and comment via the API or services; terminate/close the Spring `ApplicationContext`; start a **fresh** `ApplicationContext` against the **same** database; verify the same ticket `id`, title, description, priority, assignee, `status`, and persisted comments ([plan.md](./plan.md))
 - [ ] T058 Configure Maven to run PostgreSQL IT (e.g. Failsafe profile or JUnit tag); document in `README.md`
 - [ ] T059 Complete `README.md` — Java 21, Node, Docker PostgreSQL, env vars, `mvn test`, run backend `local` + frontend dev server
 - [ ] T060 [P] Verify springdoc output matches `specs/001-support-ticket-management/contracts/openapi.yaml` paths and schemas
